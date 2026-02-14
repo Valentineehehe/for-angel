@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Angel ❤️</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root { --p: #ff85a2; --s: #fce4ec; --d: #d63384; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center; 
+            background: linear-gradient(45deg, #fce4ec, #ffc1e3); overflow: hidden; text-align: center;
+        }
+        .container { 
+            background: rgba(255, 255, 255, 0.95); padding: 50px; border-radius: 40px; 
+            box-shadow: 0 20px 60px rgba(214, 51, 132, 0.3); 
+            max-width: 450px; width: 90%; z-index: 10; position: relative; border: 5px solid #fff;
+        }
+        h1 { color: var(--d); font-size: 2.5rem; margin-top: 0; }
+        p { color: #b90e6e; font-size: 1.3rem; font-weight: 500; }
+        .gif-container img { width: 180px; border-radius: 20px; margin-bottom: 20px; }
+        .btn-group { margin-top: 30px; height: 80px; position: relative; }
+        button { 
+            padding: 15px 35px; font-size: 1.2rem; font-weight: bold; cursor: pointer; 
+            border-radius: 50px; border: none; transition: 0.3s; 
+        }
+        #yesBtn { background: var(--p); color: white; box-shadow: 0 5px 15px rgba(255, 133, 162, 0.4); }
+        #yesBtn:hover { transform: scale(1.1); background: var(--d); }
+        #noBtn { background: #adb5bd; color: white; position: absolute; left: 60%; transition: 0.1s; z-index: 999; }
+        .floating-heart {
+            position: absolute; color: var(--p); font-size: 20px;
+            animation: move 6s linear infinite; opacity: 0.5; z-index: 1;
+        }
+        @keyframes move {
+            0% { transform: translateY(110vh) rotate(0deg); }
+            100% { transform: translateY(-10vh) rotate(360deg); }
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <script>
+        // Generating background hearts
+        for(let i=0; i<30; i++) {
+            let h = document.createElement('div');
+            h.className = 'floating-heart'; h.innerHTML = '❤️';
+            h.style.left = Math.random()*100+'vw'; h.style.animationDuration = (Math.random()*3+3)+'s';
+            h.style.fontSize = (Math.random()*20+10)+'px';
+            document.body.appendChild(h);
+        }
+    </script>
+
+    <div class="container">
+        <div id="s1">
+            <img src="cat1.gif" alt="Cute Cat" style="width:160px;">
+            <h1>Hey Angel... ❤️</h1>
+            <p>Listen up, Bhondu! I have a very important question for you.</p>
+            <button id="yesBtn" onclick="show(2)">Click here, Chotu!</button>
+        </div>
+
+        <div id="s2" class="hidden">
+            <img src="cat2.gif" alt="Pleading Cat" style="width:160px;">
+            <h1>Will you be my Valentine?</h1>
+            <p style="color:red; font-size: 0.9rem;">⚠️ WARNING: Don't you dare click No! ⚠️</p>
+            <div class="btn-group">
+                <button id="yesBtn" style="position: absolute; left: 10%;" onclick="show(3)">YES! ❤️</button>
+                <button id="noBtn" onmouseover="move()" onclick="move()">No ❌</button>
+            </div>
+        </div>
+
+        <div id="s3" class="hidden">
+            <img src="cat3.gif" alt="Happy Cat" style="width:200px;">
+            <h1>YAAAYYYY! 🥰</h1>
+            <p>Awwweee soo sweeetttt!<br>I love you so much baby girl! ❤️✨<br>You're stuck with me now, Bhondu!</p>
+        </div>
+    </div>
+
+    <script>
+        function show(num) {
+            document.getElementById('s1').classList.add('hidden');
+            document.getElementById('s2').classList.add('hidden');
+            document.getElementById('s3').classList.add('hidden');
+            document.getElementById('s'+num).classList.remove('hidden');
+            if(num === 3) {
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#ff85a2', '#d63384', '#ffffff'] });
+            }
+        }
+        function move() {
+            const b = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - b.clientWidth);
+            const y = Math.random() * (window.innerHeight - b.clientHeight);
+            b.style.position = 'fixed';
+            b.style.left = x + 'px';
+            b.style.top = y + 'px';
+        }
+    </script>
+</body>
+</html>
